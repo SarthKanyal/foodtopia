@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.section`
   display: grid;
@@ -10,11 +10,13 @@ const Wrapper = styled.section`
   }
   .form {
     max-width: 400px;
-    border-top: 5px solid var(--primary-500);
+    border-top: 4px solid var(--primary-500);
+    border-bottom: 4px solid var(--primary-500);
   }
 
   h3 {
     text-align: center;
+    color: var(--primary-800);
   }
   p {
     margin: 0;
@@ -23,13 +25,19 @@ const Wrapper = styled.section`
   }
   .btn {
     margin-top: 1rem;
+    margin-bottom: 0.5rem;
   }
   .member-btn {
     background: transparent;
     border: transparent;
-    color: var(--primary-500);
+    color: var(--primary-800);
     cursor: pointer;
     letter-spacing: var(--letterSpacing);
   }
-`
-export default Wrapper
+  a {
+    color: var(--primary-500);
+    text-decoration: underline;
+    text-transform: capitalize;
+  }
+`;
+export default Wrapper;

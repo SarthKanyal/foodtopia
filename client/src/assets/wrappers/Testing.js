@@ -1,5 +1,4 @@
-import styled from 'styled-components'
-
+import styled from "styled-components";
 const Wrapper = styled.main`
   nav {
     width: var(--fluid-width);
@@ -22,7 +21,7 @@ const Wrapper = styled.main`
     }
   }
   p {
-    color: var(--grey-600);
+    color: var(--primary-500);
   }
   .main-img {
     display: none;
@@ -36,5 +35,6 @@ const Wrapper = styled.main`
       display: block;
     }
   }
-`
-export default Wrapper
+`;
+
+export default Wrapper;
