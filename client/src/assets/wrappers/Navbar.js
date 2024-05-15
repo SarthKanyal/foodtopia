@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.nav`
   height: var(--nav-height);
@@ -6,16 +6,21 @@ const Wrapper = styled.nav`
   align-items: center;
   justify-content: center;
   box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.1);
+  background: #e6ffe6;
+
   .logo {
     display: flex;
-    align-items: center;
-    width: 100px;
+    align-items: left;
+    width: auto;
+    height: auto;
+    margin-left: -300px;
   }
   .nav-center {
     display: flex;
     width: 90vw;
     align-items: center;
     justify-content: space-between;
+    margin-left: -10px;
   }
   .toggle-btn {
     background: transparent;
@@ -26,7 +31,7 @@ const Wrapper = styled.nav`
     display: flex;
     align-items: center;
   }
-  background: var(--white);
+
   .btn-container {
     position: relative;
   }
@@ -65,6 +70,22 @@ const Wrapper = styled.nav`
   .logo-text {
     display: none;
     margin: 0;
+    color: var(--primary-500);
+  }
+  .header {
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    padding-left: 2.5rem;
+  }
+  .logo-container {
+    display: flex;
+    justify-content: space-between;
+
+    width: 400px;
+
+    /* position: sticky; */
+    top: 0;
   }
   @media (min-width: 992px) {
     position: sticky;
@@ -80,5 +101,5 @@ const Wrapper = styled.nav`
       display: block;
     }
   }
-`
-export default Wrapper
+`;
+export default Wrapper;

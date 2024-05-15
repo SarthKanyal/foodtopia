@@ -7,6 +7,7 @@ import connectDB from "./db/connect.js";
 import User from "./models/User.js";
 import authRouter from "./routes/authRoutes.js";
 import itemsRouter from "./routes/itemsRouter.js";
+import { authMiddleware } from "./middleware/index.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -14,7 +15,7 @@ const port = process.env.PORT || 5000;
 //middleware
 app.use(express.json());
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/items", itemsRouter);
+app.use("/api/v1/items", authMiddleware, itemsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello people");

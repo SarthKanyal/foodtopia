@@ -1,12 +1,16 @@
-import { BadRequestError } from "../errors/index.js";
+import { BadRequestError, UnauthenticatedError } from "../errors/index.js";
 import validator from "validator";
 import User from "../models/User.js";
+import jwt from "jsonwebtoken";
 
 const loginMiddleware = (req, res, next) => {
+  const { email, password } = req.body;
+  console.log(email, password);
   if (!email || !password) {
     throw new BadRequestError("Please provide all fields");
   }
-  return next();
+
+  next();
 };
 
 const registerMiddleware = async (req, res, next) => {
@@ -23,4 +27,21 @@ const registerMiddleware = async (req, res, next) => {
   next();
 };
 
-export { loginMiddleware, registerMiddleware };
+const authMiddleware = async (req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    throw new UnauthenticatedError("Invalid token");
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = { Id: payload.userId };
+    next();
+  } catch (error) {
+    throw new UnauthenticatedError("Authentication failed");
+  }
+};
+
+export { authMiddleware, loginMiddleware, registerMiddleware };

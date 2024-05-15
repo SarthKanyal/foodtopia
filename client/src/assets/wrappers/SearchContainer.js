@@ -1,9 +1,10 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.section`
   .form {
     width: 100%;
     max-width: 100%;
+    background: #e6ffe6;
   }
   .form-input,
   .form-select,
@@ -17,10 +18,10 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr;
     column-gap: 2rem;
-    row-gap: 0.5rem;
+    row-gap: 1rem;
   }
-  h5 {
-    font-weight: 700;
+  h3 {
+    font-weight: 600;
   }
   .btn-block {
     align-self: end;
@@ -39,6 +40,6 @@ const Wrapper = styled.section`
       margin-top: 0;
     }
   }
-`
+`;
 
-export default Wrapper
+export default Wrapper;

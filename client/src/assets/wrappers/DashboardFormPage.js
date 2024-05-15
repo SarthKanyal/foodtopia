@@ -1,13 +1,18 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.section`
   border-radius: var(--borderRadius);
   width: 100%;
-  background: var(--white);
+  background: #e6ffe6;
   padding: 3rem 2rem 4rem;
   box-shadow: var(--shadow-2);
   h3 {
     margin-top: 0;
+    font-weight: 600;
+  }
+  .icon {
+    font-size: 1rem;
+    margin-left: 0.5rem;
   }
   .form {
     margin: 0;
@@ -16,13 +21,15 @@ const Wrapper = styled.section`
     padding: 0;
     max-width: 100%;
     width: 100%;
+    background: #e6ffe6;
   }
   .form-row {
     margin-bottom: 0;
   }
   .form-center {
     display: grid;
-    row-gap: 0.5rem;
+
+    row-gap: 1.5rem;
   }
   .form-center button {
     align-self: end;
@@ -32,12 +39,19 @@ const Wrapper = styled.section`
   .btn-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 1rem;
+    column-gap: 0.5rem;
     align-self: flex-end;
     margin-top: 0.5rem;
     button {
       height: 35px;
     }
+  }
+  .donate-btn {
+    color: #570861;
+    background: #cbc3e3;
+  }
+  .donate-btn:hover {
+    background: #ffc0cb;
   }
   .clear-btn {
     background: var(--grey-500);
@@ -63,6 +77,6 @@ const Wrapper = styled.section`
       margin-top: 0;
     }
   }
-`
+`;
 
-export default Wrapper
+export default Wrapper;

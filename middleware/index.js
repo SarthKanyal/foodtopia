@@ -1,5 +1,9 @@
 import errorMiddleware from "./error-handler.js";
 
-import { registerMiddleware } from "./authMiddlewares.js";
+import {
+  registerMiddleware,
+  loginMiddleware,
+  authMiddleware,
+} from "./authMiddlewares.js";
 
-export { errorMiddleware, registerMiddleware };
+export { errorMiddleware, registerMiddleware, loginMiddleware, authMiddleware };

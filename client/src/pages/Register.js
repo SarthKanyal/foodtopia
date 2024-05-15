@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Logo, FormRow, Alert } from "../components";
 import Wrapper from "../assets/wrappers/RegisterPage";
 import { useAppContext } from "../context/appContext";
-
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const initialState = {
   name: "",
   email: "",
@@ -11,7 +12,9 @@ const initialState = {
 };
 
 const Register = () => {
-  const { showAlert, displayAlert } = useAppContext();
+  const navigate = useNavigate();
+  const { user, isLoading, showAlert, displayAlert, setupUser } =
+    useAppContext();
   const [values, setValues] = useState(initialState);
 
   const handleChange = (e) => {
@@ -28,6 +31,18 @@ const Register = () => {
       displayAlert();
       return;
     }
+    const currentUser = { name, email, password };
+
+    if (isMember) {
+      const endpoint = "login";
+      const alertText = "Login successful! Redirecting to Dashboard...";
+      setupUser({ currentUser, endpoint, alertText });
+    } else {
+      const endpoint = "register";
+      const alertText =
+        "Account created successfully! Redirecting to Dashboard...";
+      setupUser({ currentUser, endpoint, alertText });
+    }
   };
 
   const toggleMember = () => {
@@ -35,6 +50,15 @@ const Register = () => {
 
     return;
   };
+
+  useEffect(() => {
+    if (user) {
+      console.log("use effect called");
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
+    }
+  }, [user, navigate]);
 
   return (
     <Wrapper className="full-page">
@@ -66,13 +90,13 @@ const Register = () => {
           handleChange={handleChange}
         />
         <FormRow
-          type="text"
+          type="password"
           name="password"
           value={values.password}
           labelText="Password"
           handleChange={handleChange}
         />
-        <button type="submit" className="btn btn-block">
+        <button type="submit" className="btn btn-block" disabled={isLoading}>
           Submit
         </button>
 

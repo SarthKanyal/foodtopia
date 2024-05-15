@@ -21,6 +21,12 @@ const UserSchema = new mongoose.Schema({
       message: "Please provide a valid email address",
     },
   },
+  lastName: {
+    type: String,
+    trim: true,
+    maxlength: 20,
+    default: "lastName",
+  },
   password: {
     type: "String",
     required: [true, "Please provide password"],
@@ -34,18 +40,21 @@ const UserSchema = new mongoose.Schema({
 });
 
 UserSchema.pre("save", async function (next) {
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
+  if (this.isModified("password")) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
   next();
 });
 
 UserSchema.methods.checkPassword = async function (providedPassword) {
+  console.log("entered password checker");
   const isPassword = await bcrypt.compare(providedPassword, this.password);
+  console.log(isPassword);
   return isPassword;
 };
 
-UserSchema.methods.generateJWT = function () {
-  console.log("create token");
+UserSchema.methods.generateJWT = async function () {
   return jwt.sign({ userId: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_LIFETIME,
   });
